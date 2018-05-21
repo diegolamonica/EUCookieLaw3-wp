@@ -1,0 +1,43 @@
+/*
+ * Copyright (c) 2018 $name CC-BY-NC
+ */
+
+.tool-list{
+	border: 1px solid #ccc;
+	background-color: #fff;
+	padding: 10px;
+}
+
+.tool-item{
+	border-bottom: 1px dashed #ccc;
+}
+
+
+img.tool-icon{
+	max-height: 100px;
+}
+img.tool-icon,
+.tool-info {
+	display: inline-block;
+	vertical-align: top;
+}
+.tool-title{
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 0;
+	color: #261;
+}
+
+.tool-description{
+	color: #888;
+	margin: 0;
+	padding: 0;
+}
+
+.tool-more{
+	margin: 0;
+
+}
+
+.tool-more a{
+	color: #480;
+}
