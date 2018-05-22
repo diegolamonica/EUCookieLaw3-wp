@@ -48,11 +48,13 @@ class EUCookieLawBackend extends toSendItCustomPost {
 		<h1><?= __( "About EUCookieLaw", EUCookieLaw3::LANG_DOMAIN ); ?></h1>
 
 		<p>
-			<?= __( "EUCookieLaw3 is a revamped version of the plugin EUCookieLaw." ) ?>
+			<?= __( "EUCookieLaw3 is a revamped version of the plugin EUCookieLaw.", EUCookieLaw3::LANG_DOMAIN ) ?>
 		</p>
 		<p>
-			Read the <a
-				href="https://www.github.com/diegolamonica/EUCookieLaw3/"><?= __( "on-line documentation" ); ?></a>
+			<?=sprintf(
+				__("Read the <a href=\"%s\">on-line documentation</a>", EUCookieLaw3::LANG_DOMAIN ),
+			'https://www.github.com/diegolamonica/EUCookieLaw3/'
+			); ?>
 		</p>
 		<p>
 			<?= __( "The plugin is totally free and its source code is open source in all its parts.", EUCookieLaw3::LANG_DOMAIN ) ?>
@@ -61,7 +63,7 @@ class EUCookieLawBackend extends toSendItCustomPost {
 		<ul>
 			<li>
 				<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=me%40diegolamonica%2einfo&lc=IT&item_name=EU%20Cookie%20Law%203&no_note=0&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest">
-					<?= __( "A donation via PayPal" ); ?>
+					<?= __( "A donation via PayPal", EUCookieLaw3::LANG_DOMAIN ); ?>
 				</a>
 			</li>
 			<li>
@@ -151,14 +153,15 @@ class EUCookieLawBackend extends toSendItCustomPost {
 		<p>
 			<?php echo sprintf(
 				__( "If you find this plugin useful, and since I've noticed that nobody did this script (as is) before of me, " .
-				    "I'd like to receive <a href=\"%s\">a donation</a> or <a href=\"%s\">a gift from my Amazon Wishlist</a> as thankful for the time You've earned for you, your " .
+				    "I'd like to receive <a href=\"%s\">a donation</a> or a gift from <a href=\"%s\">my Amazon Wishlist</a> as thankful for the time You've earned for you, your " .
 				    "family and your hobbies! :)", EUCookieLaw3::LANG_DOMAIN ),
 				"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=me%40diegolamonica%2einfo&lc=IT&item_name=EU%20Cookie%20Law%203&no_note=0&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest",
 				"http://amzn.eu/h0ngjnC"
 				); ?>
 		</p
 		<p>
-			<?php _e( 'You can find further informations about this plugin on <a href="https://github.com/diegolamonica/EUCookieLaw/">GitHub</a>', EUCookieLaw3::LANG_DOMAIN ); ?>
+			<?= sprintf(
+				__( 'You can find further informations about this plugin on <a href="%s">GitHub</a>', EUCookieLaw3::LANG_DOMAIN ), 'https://github.com/diegolamonica/EUCookieLaw3/'); ?>
 		</p>
 		<?php
 		$this->displayFBLike();
@@ -232,11 +235,12 @@ class EUCookieLawBackend extends toSendItCustomPost {
 				<?=__("Select banner aspect:", EUCookieLaw3::LANG_DOMAIN); ?>
 				<select name="style">
 					<option value="" <?php selected($style=='' ) ?>><?= _e( "No decoration" , EUCookieLaw3::LANG_DOMAIN); ?></option>
-					<option value="bootstrap.css"  <?php selected($style=='bootstrap.css' ) ?>>Bootstrap Like</option>
+					<option value="bootstrap-like.css"  <?php selected($style=='bootstrap-like.css' ) ?>>Bootstrap Like</option>
 					<option value="darky-miky.css"  <?php selected($style=='darky-miky.css' ) ?>>Dark Style</option>
 				</select>
 				<p class="help">
-					<?=__('You can set a default style or you should define the rules for the plugin following the styling guide documentation'); ?>
+					<?=sprintf(
+						__("You can set a default style or you should define the rules for the Banner following the <a href=\"%s\">design guideguide documentation</a>", EUCookieLaw3::LANG_DOMAIN), "https://github.com/diegolamonica/EUCookieLaw3-themes"); ?>
 				</p>
 			</label>
 		</div>
@@ -266,6 +270,14 @@ class EUCookieLawBackend extends toSendItCustomPost {
 
 			<p>
 				<?=__("The following resources are not directly related to this plugin.", EUCookieLaw3::LANG_DOMAIN) ?>
+			</p>
+			<p>
+				<?=sprintf(
+
+					__("If you discover some useful resources online related to CookieLaw and GDPR and you want to share with all, " .
+					   "let me knwo at <a href=\"mailto:%s\">%1\$s</a>.", EUCookieLaw3::LANG_DOMAIN),
+					'diego.lamonica@gmail.com');
+					?>
 			</p>
 
 			<ul class="tool-list">
@@ -339,6 +351,7 @@ class EUCookieLawBackend extends toSendItCustomPost {
 		$cols = [
 			'cb'                          => '<input type="checkbox" />',
 			EUCookieLaw3::MD_CONSENTID    => __( 'Consent Identifier', EUCookieLaw3::LANG_DOMAIN ),
+			EUCookieLaw3::MD_SERVICE    => __( 'Service', EUCookieLaw3::LANG_DOMAIN ),
 			EUCookieLaw3::MD_STATUS       => __( 'Consent status', EUCookieLaw3::LANG_DOMAIN ),
 			EUCookieLaw3::MD_WHEN         => __( 'Since', EUCookieLaw3::LANG_DOMAIN ),
 			EUCookieLaw3::MD_USER_ADDRESS => __( 'IP Address', EUCookieLaw3::LANG_DOMAIN ),

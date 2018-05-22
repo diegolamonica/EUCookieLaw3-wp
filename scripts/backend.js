@@ -12,7 +12,19 @@ jQuery(document).ready(function( $ ) {
 			    }
 		    } );
 
-		window.theCodeEditor = codeEditor;
 		codeEditor.codemirror.setSize( size.width, size.height );
+
+		codeEditor.codemirror.on('change', function(){
+			var buffer =  codeEditor.codemirror.getValue(),
+			    pattern = /.*(bootstrap-like|darky-miky)\.css.*/;
+
+			if( pattern.test(buffer) ){
+
+				codeEditor.codemirror.setValue( buffer.replace(pattern, '') )
+
+			}
+		});
+
+
 	}
 });

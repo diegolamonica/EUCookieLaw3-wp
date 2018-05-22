@@ -4,7 +4,7 @@ class EUCookieLaw3 {
 	const VERSION     = '20180520';
 	const POST_NAME   = 'EUCookieLaw';
 	const POST_SLUG   = 'eucookielaw';
-	const LANG_DOMAIN = 'eucookielaw3';
+	const LANG_DOMAIN = 'EUCookieLaw3';
 
 	const MD_CONSENTID    = 'consent_identifier';
 	const MD_SERVICE      = 'service';
@@ -34,6 +34,11 @@ class EUCookieLaw3 {
 		toSendItCustomPost::set( $metadata, $valore, $postId );
 	}
 
+	static public function loadTranslations() {
+
+		load_plugin_textdomain( self::LANG_DOMAIN, false, basename( dirname( __FILE__ ) ) . '/languages/' );
+	}
+
 	static public function init() {
 		/*
 		 * Includo il frontend e il backend.
@@ -43,10 +48,6 @@ class EUCookieLaw3 {
 
 		self::$backend  = new EUCookieLawBackend();
 		self::$frontend = new EUCookieLawFrontend();
-
-
-
-
 
 		/*
 		 * Registro il custom post
@@ -63,7 +64,9 @@ class EUCookieLaw3 {
 				'capability_type' => 'post',
 				'capabilities'    => [
 					'create_posts' => 'do_not_allow', // false < WP 4.5, credit @Ewout
-					'view_posts'   => true,
+					'delete_posts' => 'do_not_allow', // false < WP 4.5, credit @Ewout
+
+
 				],
 				'map_meta_cap'    => true, // Set to `false`, if users are not allowed to edit/delete existing posts
 			]
@@ -74,6 +77,7 @@ class EUCookieLaw3 {
 	public function __construct() {
 
 		add_action( 'init', [ __CLASS__, 'init' ] );
+		add_action( 'plugins_loaded', [ __CLASS__, 'loadTranslations' ] );
 
 	}
 

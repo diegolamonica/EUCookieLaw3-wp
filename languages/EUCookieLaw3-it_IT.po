@@ -1,0 +1,114 @@
+#. extracted from ./backend.php
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: EUCookieLaw3 20180522\n"
+"Report-Msgid-Bugs-To: diego.lamonica@gmail.com\n"
+"POT-Creation-Date: 2018-05-22 14:29+0200\n"
+"PO-Revision-Date: 2018-05-22 15:05+0200\n"
+"Last-Translator: Diego La Monica <diego.lamonica@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 1.13.0\n"
+
+msgid "EUCookieLaw3"
+msgstr ""
+
+msgid "Save settings"
+msgstr "Salva le impostazioni"
+
+msgid "What the hell?!?!"
+msgstr "Ma che Diavolo?!?!"
+
+msgid "Where are all EUCookieLaw settings???"
+msgstr "Dove sono tutte le impostazioni di EUCookieLaw???"
+
+msgid "Don't worry, nowdays all is more simple than in the past! Now you can use the <a href=\"https://diegolamonica.info/tools/eucookielaw/builder/\">online Configuration Builder</a> to produce the right configuration for your site!"
+msgstr "Non ti preoccupare, adesso tutto è molto più facile! Ora puoi utilizzare il <a href=\"https://diegolamonica.info/tools/eucookielaw/builder/\">Configuratore on-line</a> per creare la configurazione giusta per il tuo sito!"
+
+msgid "Register user consent"
+msgstr "Registra i consensi dell'utente"
+
+msgid "Enable this flag if you want that all consents and rejections should be tracked"
+msgstr "Abilita questo flag se vuoi che tutti i consensi e le revoche siano tracciate"
+
+msgid "Select banner aspect:"
+msgstr "Definisci l'aspetto del banner:"
+
+msgid "No decoration"
+msgstr "Nessuna decorazione"
+
+msgid "Service"
+msgstr "Trattamento"
+
+msgid "Status"
+msgstr "Stato"
+
+msgid "Date"
+msgstr "Data"
+
+msgid "EUCookieLaw Banner source code"
+msgstr "Codice Sorgente del banner EUCookieLaw"
+
+msgid "Paste the code obtained from the builder"
+msgstr "Incolla il codice ottenuto dal configuratore"
+
+msgid "You can set a default style or you should define the rules for the Banner following the <a href=\"%s\">design guideguide documentation</a>"
+msgstr "Puoi impostare uno stile predefinito oppure puoi creare le regole per il banner seguendo le <a href=\"%s\">linee guida per il design</a>"
+
+msgid "Donation"
+msgstr "Donazioni"
+
+msgid "If you find this plugin useful, and since I've noticed that nobody did this script (as is) before of me, "
+"I'd like to receive <a href=\"%s\">a donation</a> or a gift from <a href=\"%s\">my Amazon Wishlist</a> as thankful for "
+"the time You've earned for you, your family and your hobbies! :)"
+msgstr "Se ritieni questo plugin utile, e poichè ho notato che nessuno aveva pensato a questo (così com'è) prima di me, "
+"sarei lieto di ricevere una <a href=\"%s\">donazine</a> o un regalo dalla mia <a href=\"%s\">Amazon Wishlist</a> come pringraziamento "
+"per il tempo che hai guadagnato per te, per la tua famiglia e per i tuoi hobby! :)"
+
+msgid "You can find further informations about this plugin on <a href=\"%s\">GitHub</a>"
+msgstr "Puoi trovare maggiori informazioni per questo plugin su <a href=\"%s\">GitHub</a>"
+
+msgid "Useful resource for good people!"
+msgstr "Risorse utili per brava gente!"
+
+msgid "The following resources are not directly related to this plugin."
+msgstr "Le risorse che seguono non sono necessariamente in relazione con questo plugin."
+
+msgid "If you discover some useful resources online related to CookieLaw and GDPR and you want to share with all, let me knwo at <a href=\"mailto:%s\">%1$s</a>."
+msgstr "Se trovi qualche risorsa utile online relativa agli argomenti CookieLaw e GDPR e ritieni debba essere in questo posto, fammelo sapere tramite una mail a <a href=\"mailto:%s\">%1$s</a>."
+
+msgid "EUCookieLaw3 is a revamped version of the plugin EUCookieLaw."
+msgstr "EUCookieLaw3 è una versione riammodernata del plugin EUCookieLaw"
+
+msgid "Read the <a href=\"%s\">on-line documentation</a>"
+msgstr "Leggi la <a href=\"%s\">documentazione on-line</a>"
+
+msgid "The plugin is totally free and its source code is open source in all its parts.If you found it useful, please consider for:"
+msgstr "Il plugin è completamente gratuito ed open source in ogni sua parte. Se lo trovi utile, ti prego di valutare:"
+
+msgid "A donation via PayPal"
+msgstr "Una donazione PayPal"
+
+msgid "A gift from my Amazon Wishlist"
+msgstr "Un regalo dalla mia Wishlist di Amazon"
+
+msgid "About"
+msgstr "Informazioni"
+
+msgid "Settings"
+msgstr "Impostazioni"
+
+msgid "Tools"
+msgstr "Strumenti"
+
+msgid "All you need to know about EUCookieLaw"
+msgstr "Tutto quello che c'è da sapere su EUCookieLaw"
+
+msgid "EUCookieLaw Settings"
+msgstr "Impostazioni di EUCookieLaw"
+
+msgid "EUCookieLaw Tools"
+msgstr "Strumenti utili"

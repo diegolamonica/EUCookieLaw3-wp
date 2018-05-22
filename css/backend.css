@@ -41,3 +41,8 @@ img.tool-icon,
 .tool-more a{
 	color: #480;
 }
+
+body.post-type-eucookielaw .row-actions .edit,
+body.post-type-eucookielaw .row-actions .editinline{
+	display: none;
+}
