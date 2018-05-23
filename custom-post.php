@@ -7,7 +7,7 @@ class toSendItCustomPost {
 
 	private static $langDomain = 'default';
 
-	public function setLangDomain($domain){
+	public function setLangDomain( $domain ) {
 		self::$langDomain = $domain;
 	}
 
@@ -43,8 +43,8 @@ class toSendItCustomPost {
 
 		$instrSingular = strtolower( $singularName );
 		$instrPlural   = strtolower( $pluralName );
-		$postSettings = [
-			'labels'             => [
+		$postSettings  = [
+			'labels'               => [
 				'name'               => __( $pluralName, $langDomain ),
 				'singular_name'      => __( $singularName, $langDomain ),
 				'all_items'          => __( "All $plurarArticle$instrPlural", $langDomain ),
@@ -55,17 +55,17 @@ class toSendItCustomPost {
 				'not_found'          => __( "$singularName not found", $langDomain ),
 				'not_found_in_trash' => __( "No $instrPlural in trash", $langDomain ),
 			],
-			'public'             => true,
-			'publicly_queryable' => $public,
-			'has_archive'        => true,
-			'rewrite'            => [ 'slug' => $slug ],
-			'hierarchical'       => false,
-			'supports'           => $supports,
+			'public'               => true,
+			'publicly_queryable'   => $public,
+			'has_archive'          => true,
+			'rewrite'              => [ 'slug' => $slug ],
+			'hierarchical'         => false,
+			'supports'             => $supports,
 			'register_meta_box_cb' => $metaBoxCallBack,
 		];
 
 
-		$postSettings = array_merge( $postSettings, $capabilities);
+		$postSettings = array_merge( $postSettings, $capabilities );
 
 		register_post_type(
 			$postName,
@@ -241,8 +241,8 @@ class toSendItCustomPost {
 
 				if ( ! isset( $field[ 'options' ] ) ) {
 					$fieldOutput = '<input type="checkbox" name="' . $field[ 'id' ] . '" id="' . $field[ 'id' ] . '"' . ( $meta ? ' checked="checked"' : '' ) . ' />';
-					if($requiresLabel){
-						$fieldOutput = '<label>' . $fieldOutput .  ' ' . $field['name'] . '</label>';
+					if ( $requiresLabel ) {
+						$fieldOutput   = '<label>' . $fieldOutput . ' ' . $field[ 'name' ] . '</label>';
 						$requiresLabel = false;
 					}
 				} else {
@@ -288,7 +288,7 @@ class toSendItCustomPost {
 				break;
 		}
 
-		if ( !empty($field[ 'desc' ]) ) {
+		if ( ! empty( $field[ 'desc' ] ) ) {
 			$fieldOutput .= '<p class="help">' . $field[ 'desc' ] . '</p>';
 		}
 

@@ -36,10 +36,10 @@ class EUCookieLawFrontend {
 
 		$id = get_the_ID();
 
-		$status = EUCookieLaw3::get( EUCookieLaw3::MD_DISABLED,'','',$id );
+		$status = EUCookieLaw3::get( EUCookieLaw3::MD_DISABLED, '', '', $id );
 
 
-		if ( $status !== '1') {
+		if ( $status !== '1' ) {
 			$value = get_option( EUCookieLaw3::OPT_SCRIPT, '<!-- not found -->' );
 			echo $value;
 		}
@@ -47,8 +47,8 @@ class EUCookieLawFrontend {
 
 	public function init() {
 
-		$style = get_option( EUCookieLaw3::OPT_STYLE, '');
-		if( $style !== '' ){
+		$style = get_option( EUCookieLaw3::OPT_STYLE, '' );
+		if ( $style !== '' ) {
 			wp_register_style( __CLASS__, plugins_url( 'css/' . $style, __FILE__ ) );
 		}
 
@@ -88,26 +88,26 @@ class EUCookieLawFrontend {
 		$guid = $_POST[ 'guid' ];
 
 		$posts = get_posts( [
-			                    'post_type'   => EUCookieLaw3::POST_SLUG,
-			                    'post_status' => 'draft',
-			                    'meta_key'    => EUCookieLaw3::MD_CONSENTID,
-			                    'meta_value'  => $guid,
-			                    'posts_per_page' => -1
+			                    'post_type'      => EUCookieLaw3::POST_SLUG,
+			                    'post_status'    => 'draft',
+			                    'meta_key'       => EUCookieLaw3::MD_CONSENTID,
+			                    'meta_value'     => $guid,
+			                    'posts_per_page' => - 1,
 		                    ] );
 
 		$exportedKeys = [
 			EUCookieLaw3::MD_SERVICE,
 			EUCookieLaw3::MD_STATUS,
 			EUCookieLaw3::MD_WHEN,
-			EUCookieLaw3::MD_SERVICE
+			EUCookieLaw3::MD_SERVICE,
 		];
 
 		$records = [];
-		foreach($posts as $post ){
+		foreach ( $posts as $post ) {
 			$record = [];
-			foreach($exportedKeys as $exportedKey){
+			foreach ( $exportedKeys as $exportedKey ) {
 
-				$record[ $exportedKey ] = EUCookieLaw3::get($exportedKey,'','', $post->ID);
+				$record[ $exportedKey ] = EUCookieLaw3::get( $exportedKey, '', '', $post->ID );
 
 			}
 

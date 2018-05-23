@@ -1,7 +1,7 @@
 <?php
 
 class EUCookieLaw3 {
-	const VERSION     = '20180520';
+	const VERSION     = '20180523';
 	const POST_NAME   = 'EUCookieLaw';
 	const POST_SLUG   = 'eucookielaw';
 	const LANG_DOMAIN = 'EUCookieLaw3';

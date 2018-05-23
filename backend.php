@@ -40,7 +40,6 @@ class EUCookieLawBackend extends toSendItCustomPost {
 		add_action( 'admin_enqueue_scripts', [ $this, 'registerStartupScripts' ] );
 
 
-
 	}
 
 	public function about() {
@@ -51,9 +50,9 @@ class EUCookieLawBackend extends toSendItCustomPost {
 			<?= __( "EUCookieLaw3 is a revamped version of the plugin EUCookieLaw.", EUCookieLaw3::LANG_DOMAIN ) ?>
 		</p>
 		<p>
-			<?=sprintf(
-				__("Read the <a href=\"%s\">on-line documentation</a>", EUCookieLaw3::LANG_DOMAIN ),
-			'https://www.github.com/diegolamonica/EUCookieLaw3/'
+			<?= sprintf(
+				__( "Read the <a href=\"%s\">on-line documentation</a>", EUCookieLaw3::LANG_DOMAIN ),
+				'https://www.github.com/diegolamonica/EUCookieLaw3/'
 			); ?>
 		</p>
 		<p>
@@ -77,7 +76,7 @@ class EUCookieLawBackend extends toSendItCustomPost {
 	}
 
 	private function buildScreen( $screen ) {
-		add_screen_option( 'layout_columns', array( 'max' => 2, 'default' => 2 ) );
+		add_screen_option( 'layout_columns', [ 'max' => 2, 'default' => 2 ] );
 		?>
 		<div class="wrap">
 			<h2>EUCookieLaw</h2>
@@ -101,7 +100,7 @@ class EUCookieLawBackend extends toSendItCustomPost {
 
 	public function settings() {
 		$screen = WP_Screen::get();
-		add_screen_option( 'layout_columns', array( 'max' => 2, 'default' => 2 ) );
+		add_screen_option( 'layout_columns', [ 'max' => 2, 'default' => 2 ] );
 		add_meta_box(
 			'eucookielaw-banner-code' . $screen->id,
 			__( 'Banner', EUCookieLaw3::LANG_DOMAIN ),
@@ -112,14 +111,14 @@ class EUCookieLawBackend extends toSendItCustomPost {
 		add_meta_box(
 			'eucookielaw-message-support' . $screen->id,
 			__( 'Support', EUCookieLaw3::LANG_DOMAIN ),
-			array( $this, 'outputMessagesSupport' ),
+			[ $this, 'outputMessagesSupport' ],
 			$screen, 'side', 'high'
 		);
 
 		add_meta_box(
 			'eucookielaw-donation' . $screen->id,
 			__( 'Donation', EUCookieLaw3::LANG_DOMAIN ),
-			array( $this, 'donationsMetabox' ),
+			[ $this, 'donationsMetabox' ],
 			$screen, 'side', 'high'
 		);
 		$this->buildScreen( $screen );
@@ -157,11 +156,11 @@ class EUCookieLawBackend extends toSendItCustomPost {
 				    "family and your hobbies! :)", EUCookieLaw3::LANG_DOMAIN ),
 				"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=me%40diegolamonica%2einfo&lc=IT&item_name=EU%20Cookie%20Law%203&no_note=0&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest",
 				"http://amzn.eu/h0ngjnC"
-				); ?>
+			); ?>
 		</p
 		<p>
 			<?= sprintf(
-				__( 'You can find further informations about this plugin on <a href="%s">GitHub</a>', EUCookieLaw3::LANG_DOMAIN ), 'https://github.com/diegolamonica/EUCookieLaw3/'); ?>
+				__( 'You can find further informations about this plugin on <a href="%s">GitHub</a>', EUCookieLaw3::LANG_DOMAIN ), 'https://github.com/diegolamonica/EUCookieLaw3/' ); ?>
 		</p>
 		<?php
 		$this->displayFBLike();
@@ -169,13 +168,13 @@ class EUCookieLawBackend extends toSendItCustomPost {
 
 	public function outputMessagesSupport() {
 		?>
-		<h3><?php _e( "Save settings", EUCookieLaw3::LANG_DOMAIN); ?></h3>
+		<h3><?php _e( "Save settings", EUCookieLaw3::LANG_DOMAIN ); ?></h3>
 
 
 		<p>
-			<p class="eucookielaw-info-submit"><strong>EUCookieLaw version <?php echo EUCookieLaw3::VERSION ?></strong></p>
+		<p class="eucookielaw-info-submit"><strong>EUCookieLaw version <?php echo EUCookieLaw3::VERSION ?></strong></p>
 		<p>
-			<input type="hidden" name="nonce" value="<?php echo wp_create_nonce( __CLASS__ ); ?>" />
+			<input type="hidden" name="nonce" value="<?php echo wp_create_nonce( __CLASS__ ); ?>"/>
 			<input type="submit" name="submit" id="submit" class="button button-primary" value="<?php _e( "Save" ); ?>">
 		</p>
 		<?php
@@ -189,58 +188,62 @@ class EUCookieLawBackend extends toSendItCustomPost {
 	}
 
 	public function bannerMetabox() {
-		if ( isset( $_POST['nonce'] ) && wp_verify_nonce( $_POST['nonce'], __CLASS__ ) ) {
+		if ( isset( $_POST[ 'nonce' ] ) && wp_verify_nonce( $_POST[ 'nonce' ], __CLASS__ ) ) {
 
 			$_POST = stripslashes_deep( $_POST );
 
 			update_option( EUCookieLaw3::OPT_SCRIPT, $_POST[ 'banner' ] );
 			update_option( EUCookieLaw3::OPT_STYLE, $_POST[ 'style' ] );
-			update_option( EUCookieLaw3::OPT_REGISTER_CONSENT, isset($_POST[ 'consent' ]) );
+			update_option( EUCookieLaw3::OPT_REGISTER_CONSENT, isset( $_POST[ 'consent' ] ) );
 		}
-		$script = get_option( EUCookieLaw3::OPT_SCRIPT, '' );
+		$script  = get_option( EUCookieLaw3::OPT_SCRIPT, '' );
 		$consent = get_option( EUCookieLaw3::OPT_REGISTER_CONSENT, false );
-		$style = get_option( EUCookieLaw3::OPT_STYLE, false );
+		$style   = get_option( EUCookieLaw3::OPT_STYLE, false );
 
-		$settings = array(
-			'codeEditor' => wp_enqueue_code_editor( array( 'mode' => 'text/html' ) ),
-		);
+		$settings = [
+			'codeEditor' => wp_enqueue_code_editor( [ 'mode' => 'text/html' ] ),
+		];
 		wp_enqueue_script( 'wp-theme-plugin-editor' );
 
 		?>
-		<h3><?=__("What the hell?!?!", EUCookieLaw3::LANG_DOMAIN) ?></h3>
+		<h3><?= __( "What the hell?!?!", EUCookieLaw3::LANG_DOMAIN ) ?></h3>
 		<p>
-			<strong><?=__("Where are all EUCookieLaw settings???", EUCookieLaw3::LANG_DOMAIN)?></strong><br />
-			<?=__("Don't worry, nowdays all is more simple than in the past! Now you can use the <a href=\"https://diegolamonica.info/tools/eucookielaw/builder/\">online Configuration Builder</a> to produce the right configuration for your site!", EUCookieLaw3::LANG_DOMAIN)?>
+			<strong><?= __( "Where are all EUCookieLaw settings???", EUCookieLaw3::LANG_DOMAIN ) ?></strong><br/>
+			<?= __( "Don't worry, nowdays all is more simple than in the past! Now you can use the <a href=\"https://diegolamonica.info/tools/eucookielaw/builder/\">online Configuration Builder</a> to produce the right configuration for your site!", EUCookieLaw3::LANG_DOMAIN ) ?>
 		</p>
 		<p></p>
 
-		<label for="code-editor"><?php _e( "EUCookieLaw Banner source code", EUCookieLaw3::LANG_DOMAIN ); ?></label></th>
+		<label
+			for="code-editor"><?php _e( "EUCookieLaw Banner source code", EUCookieLaw3::LANG_DOMAIN ); ?></label></th>
 
 		<textarea id="code-editor" name="banner" cols="30" rows="18"
-		          class="large-text"><?=htmlspecialchars($script)?></textarea>
+		          class="large-text"><?= htmlspecialchars( $script ) ?></textarea>
 		<p class="help">
-			<?=__( "Paste the code obtained from the builder", EUCookieLaw3::LANG_DOMAIN ); ?>
+			<?= __( "Paste the code obtained from the builder", EUCookieLaw3::LANG_DOMAIN ); ?>
 		</p>
 		<div>
 			<label>
-				<input type="checkbox" value="1" name="consent" <?php checked($consent)?>>
-				<strong><?=__("Register user consent", EUCookieLaw3::LANG_DOMAIN)?></strong>
+				<input type="checkbox" value="1" name="consent" <?php checked( $consent ) ?>>
+				<strong><?= __( "Register user consent", EUCookieLaw3::LANG_DOMAIN ) ?></strong>
 			</label>
 			<p class="help">
-				<?=__('Enable this flag if you want that all consents and rejections should be tracked', EUCookieLaw3::LANG_DOMAIN);?>
+				<?= __( 'Enable this flag if you want that all consents and rejections should be tracked', EUCookieLaw3::LANG_DOMAIN ); ?>
 			</p>
 		</div>
 		<div>
 			<label>
-				<?=__("Select banner aspect:", EUCookieLaw3::LANG_DOMAIN); ?>
+				<?= __( "Select banner aspect:", EUCookieLaw3::LANG_DOMAIN ); ?>
 				<select name="style">
-					<option value="" <?php selected($style=='' ) ?>><?= _e( "No decoration" , EUCookieLaw3::LANG_DOMAIN); ?></option>
-					<option value="bootstrap-like.css"  <?php selected($style=='bootstrap-like.css' ) ?>>Bootstrap Like</option>
-					<option value="darky-miky.css"  <?php selected($style=='darky-miky.css' ) ?>>Dark Style</option>
+					<option
+						value="" <?php selected( $style == '' ) ?>><?= __( "No decoration", EUCookieLaw3::LANG_DOMAIN ); ?></option>
+					<option value="bootstrap-like.css" <?php selected( $style == 'bootstrap-like.css' ) ?>>Bootstrap
+						Like
+					</option>
+					<option value="darky-miky.css" <?php selected( $style == 'darky-miky.css' ) ?>>Dark Style</option>
 				</select>
 				<p class="help">
-					<?=sprintf(
-						__("You can set a default style or you should define the rules for the Banner following the <a href=\"%s\">design guideguide documentation</a>", EUCookieLaw3::LANG_DOMAIN), "https://github.com/diegolamonica/EUCookieLaw3-themes"); ?>
+					<?= sprintf(
+						__( "You can set a default style or you should define the rules for the Banner following the <a href=\"%s\">design guideguide documentation</a>", EUCookieLaw3::LANG_DOMAIN ), "https://github.com/diegolamonica/EUCookieLaw3-themes" ); ?>
 				</p>
 			</label>
 		</div>
@@ -249,8 +252,8 @@ class EUCookieLawBackend extends toSendItCustomPost {
 
 	public function tools() {
 		?>
-		<h1><?=__("Useful resource for good people!", EUCookieLaw3::LANG_DOMAIN);?></h1>
-		<?
+		<h1><?= __( "Useful resource for good people!", EUCookieLaw3::LANG_DOMAIN ); ?></h1>
+		<?php
 
 		$response = wp_remote_get( "https://diegolamonica.info/tools/eucookielaw/tools.json" );
 
@@ -264,31 +267,31 @@ class EUCookieLawBackend extends toSendItCustomPost {
 
 		if ( ! $toolsList ) {
 			_e( "I am not able to retrieve useful resource list at the moment... please try later", EUCookieLaw3::LANG_DOMAIN );
-		}else {
+		} else {
 
 			?>
 
 			<p>
-				<?=__("The following resources are not directly related to this plugin.", EUCookieLaw3::LANG_DOMAIN) ?>
+				<?= __( "The following resources are not directly related to this plugin.", EUCookieLaw3::LANG_DOMAIN ) ?>
 			</p>
 			<p>
-				<?=sprintf(
+				<?= sprintf(
 
-					__("If you discover some useful resources online related to CookieLaw and GDPR and you want to share with all, " .
-					   "let me knwo at <a href=\"mailto:%s\">%1\$s</a>.", EUCookieLaw3::LANG_DOMAIN),
-					'diego.lamonica@gmail.com');
-					?>
+					__( "If you discover some useful resources online related to CookieLaw and GDPR and you want to share with all, " .
+					    "let me knwo at <a href=\"mailto:%s\">%1\$s</a>.", EUCookieLaw3::LANG_DOMAIN ),
+					'diego.lamonica@gmail.com' );
+				?>
 			</p>
 
 			<ul class="tool-list">
 				<?php
 				foreach ( $toolsList as $item ) {
-					if( empty($item->icon ) ){
+					if ( empty( $item->icon ) ) {
 						$item->icon = plugins_url( '/img/logo.png', __FILE__ );
 					}
 					?>
 					<li class="tool-item">
-						<img class="tool-icon" src="<?=$item->icon?>" alt="" />
+						<img class="tool-icon" src="<?= $item->icon ?>" alt=""/>
 						<div class="tool-info">
 							<h2 class="tool-title"><?= $item->title ?></h2>
 							<p class="tool-description"><?= $item->description ?></p>
@@ -351,7 +354,7 @@ class EUCookieLawBackend extends toSendItCustomPost {
 		$cols = [
 			'cb'                          => '<input type="checkbox" />',
 			EUCookieLaw3::MD_CONSENTID    => __( 'Consent Identifier', EUCookieLaw3::LANG_DOMAIN ),
-			EUCookieLaw3::MD_SERVICE    => __( 'Service', EUCookieLaw3::LANG_DOMAIN ),
+			EUCookieLaw3::MD_SERVICE      => __( 'Service', EUCookieLaw3::LANG_DOMAIN ),
 			EUCookieLaw3::MD_STATUS       => __( 'Consent status', EUCookieLaw3::LANG_DOMAIN ),
 			EUCookieLaw3::MD_WHEN         => __( 'Since', EUCookieLaw3::LANG_DOMAIN ),
 			EUCookieLaw3::MD_USER_ADDRESS => __( 'IP Address', EUCookieLaw3::LANG_DOMAIN ),
@@ -383,13 +386,16 @@ class EUCookieLawBackend extends toSendItCustomPost {
 
 
 	public function registerStartupScripts() {
-		wp_enqueue_script('cm_xml');
-		wp_enqueue_script('cm_javascript');
-		wp_enqueue_script('cm_css');
-		wp_enqueue_script( __CLASS__, plugins_url( '/scripts/backend.js', __FILE__ ), [ 'jquery','wp-codemirror' ], EUCookieLaw3::VERSION, false );
-		wp_enqueue_style(__CLASS__, plugins_url( '/css/backend.css', __FILE__ ), [], EUCookieLaw3::VERSION, false );
-		wp_enqueue_style('codemirror');
-		wp_enqueue_style('cm_blackboard');
+		wp_enqueue_script( 'cm_xml' );
+		wp_enqueue_script( 'cm_javascript' );
+		wp_enqueue_script( 'cm_css' );
+		wp_enqueue_script( __CLASS__, plugins_url( '/scripts/backend.js', __FILE__ ), [
+			'jquery',
+			'wp-codemirror',
+		], EUCookieLaw3::VERSION, false );
+		wp_enqueue_style( __CLASS__, plugins_url( '/css/backend.css', __FILE__ ), [], EUCookieLaw3::VERSION, false );
+		wp_enqueue_style( 'codemirror' );
+		wp_enqueue_style( 'cm_blackboard' );
 	}
 
 	public function saveEUCookieLawStatus( $postId ) {
