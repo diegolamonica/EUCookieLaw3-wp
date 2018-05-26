@@ -22,7 +22,6 @@
 
 
 	$(document).ready( function ( ) {
-
 		/*
 		 * Get the list of consents from the user
 		 */
@@ -34,6 +33,7 @@
 
 				$.ajax({
 					url: eucookielawGlobalData.ajax_url,
+					method: 'post',
 					data: {
 						action: 'consent-list',
 						guid:   sign,

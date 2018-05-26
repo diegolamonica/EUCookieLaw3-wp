@@ -2,11 +2,42 @@
 
 class EUCookieLawFrontend {
 
+	public function alterNode($matches){
+		if( preg_match( '#eucookielaw3\.min\.js#', $matches[4] ) ){
+			return $matches[0];
+		}else{
+			return sprintf('<%s%sdata-eucookielaw-manage="true" data-eucookielaw-attr="%s" data-eucookielaw-src="%s"', $matches[1], $matches[2], $matches[3], $matches[4]);
+		}
+		
+	}
+
+	public function parseHTML(){
+		$buffer = ob_get_clean();
+
+		$buffer = preg_replace_callback('#^<(script)([^>]+)(src)="([^"]+)"#ims',
+			                       [$this, 'alterNode'],
+			                       $buffer);
+
+		$buffer = preg_replace_callback("#^<(script)([^>]+)(src)='([^']+)'#ims",
+			                       [$this, 'alterNode'],
+			                       $buffer);
+
+		$buffer = preg_replace_callback('#^<(link)([^>]+)(href)="([^"]+)"#ims',
+			                       [$this, 'alterNode'],
+			                       $buffer);
+		$buffer = preg_replace_callback("#^<(link)([^>]+)(href)='([^']+)'#ims",
+			                       [$this, 'alterNode'],
+			                       $buffer);
+
+		echo $buffer;
+	}
+
 	public function __construct() {
 
 		if ( ! is_admin() ) {
 			$this->init();
 		}
+
 		add_action( 'wp_ajax_consent', [ $this, 'registerConsent' ] );
 		add_action( 'wp_ajax_nopriv_consent', [ $this, 'registerConsent' ] );
 
@@ -25,7 +56,7 @@ class EUCookieLawFrontend {
 
 
 	public function myConsents( $arguments, $content, $shortCode ) {
-		ob_start();
+
 		include 'consent-table.php';
 		$buffer = ob_get_clean();
 
@@ -85,15 +116,20 @@ class EUCookieLawFrontend {
 
 	public function getConsents() {
 
+
 		$guid = $_POST[ 'guid' ];
 
-		$posts = get_posts( [
-			                    'post_type'      => EUCookieLaw3::POST_SLUG,
-			                    'post_status'    => 'draft',
-			                    'meta_key'       => EUCookieLaw3::MD_CONSENTID,
-			                    'meta_value'     => $guid,
-			                    'posts_per_page' => - 1,
-		                    ] );
+		$filter = [
+			'post_type'      => EUCookieLaw3::POST_SLUG,
+			'post_status'    => 'draft',
+
+			'meta_key'       => EUCookieLaw3::MD_CONSENTID,
+			'meta_value'     => $guid,
+
+			'posts_per_page' => - 1,
+		] ;
+
+		$posts = get_posts( $filter );
 
 		$exportedKeys = [
 			EUCookieLaw3::MD_SERVICE,
@@ -123,7 +159,7 @@ class EUCookieLawFrontend {
 
 	public function registerStartupScripts() {
 
-		wp_enqueue_script( __CLASS__, plugins_url( '/scripts/frontend.js', __FILE__ ), [ 'jquery' ], EUCookieLaw3::VERSION, false );
+		wp_enqueue_script( __CLASS__, plugins_url( '/scripts/frontend.min.js', __FILE__ ), [ 'jquery' ], EUCookieLaw3::VERSION, false );
 		wp_localize_script( __CLASS__, 'eucookielawGlobalData',
 		                    [ 'ajax_url' => admin_url( 'admin-ajax.php' ) ] );
 		wp_enqueue_style( __CLASS__ );

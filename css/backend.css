@@ -46,3 +46,7 @@ body.post-type-eucookielaw .row-actions .edit,
 body.post-type-eucookielaw .row-actions .editinline{
 	display: none;
 }
+
+.text-center{
+	text-align: center;
+}

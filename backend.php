@@ -56,22 +56,28 @@ class EUCookieLawBackend extends toSendItCustomPost {
 			); ?>
 		</p>
 		<p>
-			<?= __( "The plugin is totally free and its source code is open source in all its parts.", EUCookieLaw3::LANG_DOMAIN ) ?>
+			<?= __( "The plugin is totally free and its source code is open source in all its parts.", EUCookieLaw3::LANG_DOMAIN ) ?><br />
+		</p>
+		<p>
 			<?= __( "If you found it useful, please consider for:", EUCookieLaw3::LANG_DOMAIN ) ?>
 		</p>
-		<ul>
-			<li>
-				<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=me%40diegolamonica%2einfo&lc=IT&item_name=EU%20Cookie%20Law%203&no_note=0&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest">
-					<?= __( "A donation via PayPal", EUCookieLaw3::LANG_DOMAIN ); ?>
-				</a>
-			</li>
-			<li>
-				<a href="http://amzn.eu/h0ngjnC">
-					<?= __( "A gift from my Amazon Wishlist", EUCookieLaw3::LANG_DOMAIN ); ?>
-				</a>
-			</li>
-		</ul>
+		<table class="form-table">
+			<tr>
+				<td class="text-center">
+					<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=me%40diegolamonica%2einfo&lc=IT&item_name=EU%20Cookie%20Law%203&no_note=0&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest">
 
+						<!-- PayPal Logo --><table border="0" cellpadding="10" cellspacing="0" align="center"><tbody><tr><td align="center"></td></tr><tr><td align="center"><a href="https://www.paypal.com/it/webapps/mpp/paypal-popup" title="Come funziona PayPal" onclick="javascript:window.open('https://www.paypal.com/it/webapps/mpp/paypal-popup','WIPaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=1060, height=700'); return false;"><img src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_74x46.jpg" border="0" alt="PayPal Logo" /></a></td></tr></tbody></table><!-- PayPal Logo -->
+						<?= __( "A donation via PayPal", EUCookieLaw3::LANG_DOMAIN ); ?>
+					</a>
+				</td>
+				<td class="text-center">
+					<a href="http://amzn.eu/h0ngjnC">
+						<img src="https://images-na.ssl-images-amazon.com/images/G/01/x-locale/communities/wishlist/uwl/UWL_SWF_shims._CB368675346_.png" /><br />
+						<?= __( "A gift from my Amazon Wishlist", EUCookieLaw3::LANG_DOMAIN ); ?>
+					</a>
+				</td>
+			</tr>
+		</table>
 		<?php
 	}
 
@@ -195,11 +201,12 @@ class EUCookieLawBackend extends toSendItCustomPost {
 			update_option( EUCookieLaw3::OPT_SCRIPT, $_POST[ 'banner' ] );
 			update_option( EUCookieLaw3::OPT_STYLE, $_POST[ 'style' ] );
 			update_option( EUCookieLaw3::OPT_REGISTER_CONSENT, isset( $_POST[ 'consent' ] ) );
+			update_option( EUCookieLaw3::OPT_ROLE, isset( $_POST[ 'role' ] ) );
 		}
 		$script  = get_option( EUCookieLaw3::OPT_SCRIPT, '' );
 		$consent = get_option( EUCookieLaw3::OPT_REGISTER_CONSENT, false );
 		$style   = get_option( EUCookieLaw3::OPT_STYLE, false );
-
+		$theRole = get_option( EUCookieLaw3::OPT_ROLE, false );;
 		$settings = [
 			'codeEditor' => wp_enqueue_code_editor( [ 'mode' => 'text/html' ] ),
 		];
@@ -212,7 +219,9 @@ class EUCookieLawBackend extends toSendItCustomPost {
 			<?= __( "Don't worry, nowdays all is more simple than in the past! Now you can use the <a href=\"https://diegolamonica.info/tools/eucookielaw/builder/\">online Configuration Builder</a> to produce the right configuration for your site!", EUCookieLaw3::LANG_DOMAIN ) ?>
 		</p>
 		<p></p>
-
+		<script type="text/javascript">
+			var EUCookieLawScriptURL = '<?=plugins_url( '/scripts/eucookielaw3.min.js', __FILE__ )?>';
+		</script>
 		<label
 			for="code-editor"><?php _e( "EUCookieLaw Banner source code", EUCookieLaw3::LANG_DOMAIN ); ?></label></th>
 
@@ -244,6 +253,29 @@ class EUCookieLawBackend extends toSendItCustomPost {
 				<p class="help">
 					<?= sprintf(
 						__( "You can set a default style or you should define the rules for the Banner following the <a href=\"%s\">design guideguide documentation</a>", EUCookieLaw3::LANG_DOMAIN ), "https://github.com/diegolamonica/EUCookieLaw3-themes" ); ?>
+				</p>
+			</label>
+		</div>
+		<div>
+			<label>
+				<?= __( "Who can manage EUCookieLaw3 settings?", EUCookieLaw3::LANG_DOMAIN ); ?>
+				<?php
+				$roles = wp_roles()->roles;
+				$rolesKeys = array_keys($roles);
+				# echo '<pre>', print_r($roles,1), '</pre>';
+
+				?>
+				<select name="role">
+					<?php
+					foreach ( $rolesKeys as $role ) {
+						?>
+						<option value="<?=$role?>" <?php selected( $role == $theRole ) ?>><?= __( $roles[$role]['name'] ); ?></option>
+						<?php
+					}
+					?>
+				</select>
+				<p class="help">
+					<?= __( "Define the minimum access level allowed", EUCookieLaw3::LANG_DOMAIN ); ?>
 				</p>
 			</label>
 		</div>
@@ -317,10 +349,12 @@ class EUCookieLawBackend extends toSendItCustomPost {
 			[ $this, 'about' ],
 			'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAAELElEQVQ4jY3UT0ibdxzH8feTJ08e85fUJyYxsWal082trsWDMhOcrjCZ2DWH0ZYd2sNOxdMOhcIQBsXbYAhedll3XmG9CQUVVqSpTGjHaLLQBTpnTJ8GNf//Pf920WLdOvq9/eD3e/1+/L58P/Dm5QYC4+Pj0fn5ecfrNgn/J9jt9qFkMjk3MzPzcU9PT7/D4RA6nY4tlUrVKpXK6aWlpcobgaFQ6NTFixd/PH/+/MTIyAiKoiCKIuVyGZvNRi6XY3V1dX10dPTT2dnZ2iuPOH5Bf39/+Nq1a39OT0/bPB4Psizj9Xqx2+34fD6azSaFQgFFURL5fP5LYPEoIB4Do5cvX/55cnLypM/nIxgMsru7i2VZuFwubDYbkiQRiUSIxWKsrKzEx8bGHA8ePPjlELAdwWJnzpwZV1V1zOl00mw2qdfrzM3NIUkS1WqVra0tMpkMAOFwmGQy6U2n018vLi6GjoMy8LaiKN9GIhGcTiemaeL1erl9+zaWZfH8+XMePXrE0tIS9XodgIGBASYmJuzPnj3rPQ6GXC5X1OFw9IdCIURRxO/3k8lkKBaLqKqKaZoMDw9z48YNLMsCwOfzMTU1JdTr9c+O/qEAfBAKhd4JBAKfDA4OMjg4yPDwMLqu02q1kGWZ3d1dZFlGEAT8fj92ux1N04hEIrRaram+vr5vNE0zbQedDsmyHDUMA1mWabfbXLhwgY2NDfx+P5IksbGxwd27dzEMg3w+T7FY5OrVq3Q6HS5dusT169cZGhr6wn7wSpdpmn9ZlkWlUkEURW7evAlAtVpFFEXi8TixWIxyuYwkSezv71OpVLh37x7xeJx2u82LFy9cIiAB70uSVFYU5XOPx4MkSQQCAWRZZnt7m3a7TXd3N61Wi729PSRJwufzMTMzgyiKaJpGPp/n/v37yzbAANrFYrGuaRqFQgFVVSkUCjgcDgzD4M6dO+i6TqPRwDAMnE4nT548YX9//+UEbW5u4na7vxMBCwgD7yqKkul0Oh8eQpZl4XQ6SSQSZLNZqtUqgUCAEydOsLCwwLlz5yiXy+zt7bG8vPzr2trarUMQ4L1qtfowGAxeKZVKtp6eHkRRRNd1dnZ20HWdbDZLs9mkq6uLRCKBIAiUy2XW1tZIpVJJVVXzh6PXAMK6rg90d3f/IYri2M7OjuDxeABwu93Iskw+n2d0dJRcLsfTp0+p1Wqsr6+TSqXm0+n0T4B1NG36gWnAF41G1b6+vu/tdrurt7eXs2fPvoQty6Krq4t0Ok02m6VUKi1sbm7eAtrw7/g6CXwE9MqyvDIyMvIVcMU0TcnhcBAMBhEEwVBV1Wi1Wg81Tfvh8ePHq8D2IfBfeagAk8BbQAf4PRAIWIIghEVRVCqVyt+NRqMGmMBvQOno4dcltgs4DZwCPAeNMwENqAE5YOtg/Ur9A4rvtmO4NgDnAAAAAElFTkSuQmCC' );
 
+		$theRole = get_option( EUCookieLaw3::OPT_ROLE, 'administrator');
+
 		add_submenu_page( self::MENU_SLUG,
 		                  __( "All you need to know about EUCookieLaw", EUCookieLaw3::LANG_DOMAIN ),
 		                  __( "About", EUCookieLaw3::LANG_DOMAIN ),
-		                  "activate_plugins",
+		                  $theRole,
 		                  self::MENU_SLUG, [
 			                  $this,
 			                  'about',
@@ -328,14 +362,14 @@ class EUCookieLawBackend extends toSendItCustomPost {
 		add_submenu_page( self::MENU_SLUG,
 		                  __( "EUCookieLaw Settings", EUCookieLaw3::LANG_DOMAIN ),
 		                  __( "Settings", EUCookieLaw3::LANG_DOMAIN ),
-		                  "activate_plugins",
+		                  $theRole,
 		                  self::MENU_SLUG . '-settings', [
 			                  $this,
 			                  'settings',
 		                  ] );
 		add_submenu_page( self::MENU_SLUG, __( "EUCookieLaw Tools", EUCookieLaw3::LANG_DOMAIN ),
 		                  __( "Tools", EUCookieLaw3::LANG_DOMAIN ),
-		                  "activate_plugins",
+		                  $theRole,
 		                  self::MENU_SLUG . '-tools', [
 			                  $this,
 			                  'tools',
@@ -389,7 +423,7 @@ class EUCookieLawBackend extends toSendItCustomPost {
 		wp_enqueue_script( 'cm_xml' );
 		wp_enqueue_script( 'cm_javascript' );
 		wp_enqueue_script( 'cm_css' );
-		wp_enqueue_script( __CLASS__, plugins_url( '/scripts/backend.js', __FILE__ ), [
+		wp_enqueue_script( __CLASS__, plugins_url( '/scripts/backend.min.js', __FILE__ ), [
 			'jquery',
 			'wp-codemirror',
 		], EUCookieLaw3::VERSION, false );

@@ -8,13 +8,15 @@
  */
 
 
-.eucookielaw-modal {
+.eucookielaw-modal.modal {
     background-color: rgba(0,0,0,0.85);
     color: #fff;
     font-family: 'Helvetica', 'Arial', sans-serif;
     font-size: .8em;
     z-index: 9999;
     position: fixed;
+	border-radius:0;
+    top: auto;
     right: 0;
     bottom: 0;
     left: 0;
@@ -27,26 +29,48 @@
    color: #fff;  
 }
 
+.eucookielaw-modal p{
+   color: #eee;
+   margin: 0 0 5px 0px;
+}
+
+
 
 .eucookielaw-modal .modal-dialog {
    padding: 20px 20px 10px 20px;
    position: relative;
+   width: 100%;
+   margin:0;
+}
+
+.eucookielaw-modal .modal-body {
+    position: unset;
+    padding: 5px 0;
+}
+
+
+.eucookielaw-modal .modal-content {
+	box-shadow:none;
+	border:0;
+	padding: 0;
+	position: unset;
+	background-color:transparent;
 }
 
 .eucookielaw-modal .modal-header {
-    padding-bottom: 10px;
+    padding: 0 0 10px 0;
     border-bottom: 1px solid #333;
 }
 
 
 .eucookielaw-modal .rejected::before,
 .eucookielaw-modal .approved::before {
-    color: #fff;
+    color: #fff !important;
     margin-right: 5px;
-    padding: 4px 4px 4px 3px;
+    padding: 3px 4px 4px 3px;
     border-radius: 50%;
-    height: 10px;
-    width: 10px;
+    height: 18px;
+    width: 18px;
     display: inline-block;
     text-align: center;
 }
@@ -54,7 +78,7 @@
 .eucookielaw-modal .rejected::before {
     content: "×";
     background-color: rgb(170, 0, 0);
-	line-height: 0.8;
+    font-size: 12px;
 }
 
 .eucookielaw-modal .approved::before {
@@ -67,14 +91,30 @@
 	color: #aaa;
 }
 
+.eucookielaw-modal .list-group {
+    padding-left: 0;
+    margin-bottom: 5px;
+}
+
 .eucookielaw-modal .list-group-item {
 	cursor:pointer;
 	margin-bottom: 5px;
 	}
 	
-	.eucookielaw-modal .list-group-item span{
-		padding-left: 22px;
+	.eucookielaw-modal.in .list-group-item span{
+		padding-left: 23px;
 		display: block;
+		font-size: 1em;
+		border: 0;
+		width: auto;
+		height: auto;
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;
+		margin:auto;
+		text-align: left;
+		z-index: 1000;
+		position: unset;
 	}
 	
 	
@@ -83,7 +123,9 @@
 .eucookielaw-modal .list-group-item {
     background-color: rgba(50,50,50,0.6);
     padding: 8px;
-	transition: all .3s;
+    transition: all .3s;
+    border: 0;
+    line-height: 0.5;
 }
 
 .eucookielaw-modal .list-group-item:hover {
@@ -93,9 +135,14 @@
 /*************************/
 	
 	
-.eucokielaw-dialog-button-container .btn {
+.eucokielaw-dialog-button-container a.btn {
     background-color: #444;
+    display:inline-block;
     padding: 6px 12px;
+    font-size: 1em;
+    margin: 6px auto 6px 0;
+    width: auto;
+    border: 0;
     border-radius: 4px;
     transition: all .3s;
     color: #bbb;
@@ -111,23 +158,34 @@
     position: absolute;
     top: 10px;
     right: 20px;
-    background-color: #aaa;
-    padding: 6px 12px;
-    border-radius: 4px;
-	transition: all .3s;
 }
 
 .eucookielaw-modal .buttons a{
     color: #333;
     text-decoration:none;
+    background-color: #aaa;
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: 0;
+    font-size: 12px;
+    transition: all .3s;
+    display: block;
 }
 
 	.eucookielaw-modal .buttons:hover{
 		background-color: #888;
 	}
+	
+.eucookielaw-modal .modal-footer {
+    padding: 0;
+    text-align: right;
+    border-top: 0;
+}
 
 .eucookielaw-dialog-footer {
 	text-align: right;
+	padding: 0 15px;
+	font-size: 11px;
 }
 
 .eucookielaw-dialog-footer a{

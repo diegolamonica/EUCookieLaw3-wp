@@ -15,13 +15,25 @@ jQuery(document).ready(function( $ ) {
 		codeEditor.codemirror.setSize( size.width, size.height );
 
 		codeEditor.codemirror.on('change', function(){
+
 			var buffer =  codeEditor.codemirror.getValue(),
-			    pattern = /.*(bootstrap-like|darky-miky)\.css.*/;
+			    patternCSS = /.*(bootstrap-like|darky-miky)\.css.*/,
+			    patternJS = /.*(https:\/\/diegolamonica\.info\/tools\/eucookielaw3\.min\.js).*/,
+			changed = false;
 
-			if( pattern.test(buffer) ){
+			if( patternCSS.test(buffer) ){
+				changed = true;
+				buffer = buffer.replace(patternCSS, '');
+			}
+			console.log(patternJS, buffer);
+			if( patternJS.test(buffer) ){
+				console.log('Changing JS');
+				changed = true;
+				buffer = buffer.replace(patternJS, '<script src="' + EUCookieLawScriptURL +'"></script>');
+			}
 
-				codeEditor.codemirror.setValue( buffer.replace(pattern, '') )
-
+			if(changed) {
+				codeEditor.codemirror.setValue( buffer );
 			}
 		});
 

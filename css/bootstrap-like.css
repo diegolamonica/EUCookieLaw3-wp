@@ -1,0 +1,159 @@
+/*
+ * Theme: Bootstrap-like
+ * Author: Diego La Monica (https://diegolamonica.info)
+ * Project: EUCookieLaw3
+ * Version: 20180526
+ * Copyright (c) 2018 Diego La Monica CC-BY-NC
+ *
+ */
+
+.modal-open {
+	overflow: hidden;
+	box-sizing: border-box;
+}
+
+.modal-open .eucookielaw-modal {
+	z-index: 9999;
+	overflow-x: hidden;
+	overflow-y: auto;
+
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #999; /* If browser does not support RGBA color */
+	background-color: rgba(0,0,0,0.8);
+}
+
+.eucookielaw-modal,
+.eucookielaw-modal *{
+	box-sizing: border-box;
+}
+.eucookielaw-modal{
+	display: none;
+}
+.eucookielaw-modal.in{
+	display: block;
+}
+
+.eucookielaw-modal .modal-dialog {
+	position: relative;
+	margin: 10px auto;
+	max-width: 800px;
+	top: 10px;
+	max-height: 90vh;
+	overflow: auto;
+}
+
+@media screen and(min-height: 600px){
+	.eucookielaw-modal .modal-dialog {
+		top: 50px;
+	}
+}
+
+@media screen and(min-height: 480px) {
+	.eucookielaw-modal .modal-dialog {
+		top: 10px;
+	}
+}
+@media screen and(max-width: 800px){
+	.eucookielaw-modal .modal-dialog{
+		max-width: 600px;
+	}
+}
+.eucookielaw-modal .modal-content {
+	position: relative;
+	background-color: #fff;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	border: 1px solid #999; /* If browser does not support RGBA color */
+	border: 1px solid rgba(0,0,0,.2);
+	border-radius: 6px;
+	outline: 0;
+	-webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);
+	box-shadow: 0 3px 9px #aaa; /* If browser does not support RGBA color */
+	box-shadow: 0 3px 9px rgba(0,0,0,.5);
+}
+
+.eucookielaw-modal .modal-header {
+	padding: 15px;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.eucookielaw-modal .modal-title {
+	margin: 0;
+	line-height: 1.42857143;
+}
+
+.eucookielaw-modal .modal-title:before{
+	display: table;
+	content: " ";
+}
+.eucookielaw-modal .modal-body {
+	position: relative;
+	padding: 15px;
+}
+
+.eucookielaw-modal .modal-footer {
+	padding: 15px;
+	text-align: right;
+	border-top: 1px solid #e5e5e5;
+}
+
+.eucookielaw-modal .btn {
+	display: inline-block;
+	padding: 6px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.42857143;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-image: none;
+	border: 1px solid transparent;
+	border-radius: 4px;
+}
+
+.eucookielaw-modal .btn-block {
+	display: block;
+	width: 100%;
+}
+
+.eucookielaw-modal .btn-default,
+.eucookielaw-modal .btn-primary {
+	color: #333;
+	background-color: #fff;
+	border: 1px solid #ccc;
+}
+
+.eucookielaw-modal.in .list-group-item.rejected span {
+	display: inline;
+	border: 0;
+	line-height: 1.2em;
+	margin-left: 2px;
+}
+
+.eucookielaw-modal.in .list-group{
+	height: 0;
+	overflow: hidden;
+}
+.eucookielaw-modal.in .list-group.collapsed{
+
+	/*
+	 * Does nothing
+	 */
+}
+
+.eucookielaw-modal.in .list-group.expanded{
+	overflow: auto;
+	height: auto;
+}

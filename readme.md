@@ -17,7 +17,6 @@ At the same time it blocks all third-party domains you have configured as cookie
 If you find this script useful, and since I've noticed that nobody did this script before of me,
 I'd like to receive [a donation](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=me%40diegolamonica%2einfo&lc=IT&item_name=EU%20Cookie%20Law%203&no_note=0&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest). :)
 
-
 # About this library
 
 **This repository contains the EUCookieLaw WordPress plugin version.** 
@@ -30,13 +29,23 @@ There is an older version of this library named just [EUCookieLaw](https://www.g
 
 It was developed as new one due the several breaking changes in it.
 
-# How to use it
+To create a consent banner please use the [online configuration builder](https://diegolamonica.info/tools/eucookielaw/builder/) 
 
-1. Download the entire repository as a zip archive and install it into your WordPress as you did with other plugins.
+# How to install it
 
-2. Else you can install it via [WordPress plugin repository](#) (awaiting for approval).
-  
-3. To create a banner please use the [online configuration builder](https://diegolamonica.info/tools/eucookielaw/builder/) 
+## From GitHub repository
+1. **Go to [releases page](https://github.com/diegolamonica/EUCookieLaw3-wp/releases)**  
+   where you can download the latest plugin release.
+
+2. **Uninstall previously installed version.**  
+   If you have an old version installed, you need to remove it before install the new one. 
+
+3. **Upload and activate**  
+   Go to your WordPress Plugin Upload page and upload the zip file you have downloaded. Once it was uploaded, activate the plugin.
+
+## From WordPress repository
+
+*Coming soon*
 
 # Available shortcodes
 

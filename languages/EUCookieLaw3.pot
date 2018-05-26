@@ -84,7 +84,10 @@ msgstr ""
 msgid "Read the <a href=\"%s\">on-line documentation</a>"
 msgstr ""
 
-msgid "The plugin is totally free and its source code is open source in all its parts.If you found it useful, please consider for:"
+msgid "The plugin is totally free and its source code is open source in all its parts."
+msgstr ""
+
+msgid "If you found it useful, please consider for:"
 msgstr ""
 
 msgid "A donation via PayPal"
@@ -109,4 +112,10 @@ msgid "EUCookieLaw Settings"
 msgstr ""
 
 msgid "EUCookieLaw Tools"
+msgstr ""
+
+msgid "Who can manage EUCookieLaw3 settings?"
+msgstr ""
+
+msgid "Define the minimum access level allowed"
 msgstr ""

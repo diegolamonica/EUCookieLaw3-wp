@@ -1,7 +1,7 @@
 <?php
 
 class EUCookieLaw3 {
-	const VERSION     = '20180523';
+	const VERSION     = '20180526.1';
 	const POST_NAME   = 'EUCookieLaw';
 	const POST_SLUG   = 'eucookielaw';
 	const LANG_DOMAIN = 'EUCookieLaw3';
@@ -15,6 +15,7 @@ class EUCookieLaw3 {
 
 	const OPT_SCRIPT           = 'eucookielaw_setting';
 	const OPT_STYLE            = 'eucookielaw_style';
+	const OPT_ROLE             = 'eucookielaw_role';
 	const OPT_REGISTER_CONSENT = 'eucookielaw_register_consent';
 	/**
 	 * @var EUCookieLawBackend

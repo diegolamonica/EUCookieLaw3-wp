@@ -86,8 +86,11 @@ msgstr "EUCookieLaw3 è una versione riammodernata del plugin EUCookieLaw"
 msgid "Read the <a href=\"%s\">on-line documentation</a>"
 msgstr "Leggi la <a href=\"%s\">documentazione on-line</a>"
 
-msgid "The plugin is totally free and its source code is open source in all its parts.If you found it useful, please consider for:"
-msgstr "Il plugin è completamente gratuito ed open source in ogni sua parte. Se lo trovi utile, ti prego di valutare:"
+msgid "The plugin is totally free and its source code is open source in all its parts."
+msgstr "Il plugin è completamente gratuito ed open source in ogni sua parte."
+
+msgid "If you found it useful, please consider for:"
+msgstr "Se lo trovi utile, ti prego di valutare:"
 
 msgid "A donation via PayPal"
 msgstr "Una donazione PayPal"
@@ -112,3 +115,9 @@ msgstr "Impostazioni di EUCookieLaw"
 
 msgid "EUCookieLaw Tools"
 msgstr "Strumenti utili"
+
+msgid "Who can manage EUCookieLaw3 settings?"
+msgstr "Chi può gestire le impostazioni di EUCookieLaw3?"
+
+msgid "Define the minimum access level allowed"
+msgstr "Indica il livello di accesso minimo consentito"
