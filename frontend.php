@@ -56,7 +56,7 @@ class EUCookieLawFrontend {
 
 
 	public function myConsents( $arguments, $content, $shortCode ) {
-
+		ob_start();
 		include 'consent-table.php';
 		$buffer = ob_get_clean();
 
