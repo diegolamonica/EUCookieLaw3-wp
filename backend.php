@@ -408,11 +408,17 @@ class EUCookieLawBackend extends toSendItCustomPost {
 		$value = get_post_meta( $post->ID, $col, true );
 		switch ( $col ) {
 
-			case 'date':
+			case EUCookieLaw3::MD_WHEN:
 				$value = mysql2date( 'D d M, Y', $value );
 				break;
-			case 'status':
+			case EUCookieLaw3::MD_STATUS:
 				$value = __( ( $value === 'ok' ) ? 'Approved' : 'Rejected', EUCookieLaw3::LANG_DOMAIN );
+				break;
+			case EUCookieLaw3::MD_USER_ADDRESS:
+				/*
+				 * Anonymizing IP in display mode
+				 */
+				$value = preg_replace('#\d+$#', '***', $value);
 				break;
 		}
 		echo( $value );

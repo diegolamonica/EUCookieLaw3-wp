@@ -103,7 +103,6 @@ class EUCookieLawFrontend {
 			                                  'post_author' => $adminUser->ID,
 		                                  ] );
 
-
 		EUCookieLaw3::set( EUCookieLaw3::MD_CONSENTID, $_POST[ 'guid' ], $newPostId );
 		EUCookieLaw3::set( EUCookieLaw3::MD_STATUS, $_POST[ 'status' ], $newPostId );
 		EUCookieLaw3::set( EUCookieLaw3::MD_WHEN, $_POST[ 'when' ], $newPostId );
